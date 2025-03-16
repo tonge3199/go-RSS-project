@@ -3,13 +3,17 @@ package main
 import (
 	"database/sql"
 	"fmt"
-	"github.com/go-chi/chi/v5"
-	"github.com/go-chi/cors"
-	"github.com/joho/godotenv"
-	"github.com/tonge3199/go-RSS-project/internal/database"
 	"log"
 	"net/http"
 	"os"
+
+	"github.com/go-chi/chi/v5"
+	"github.com/go-chi/cors"
+	"github.com/joho/godotenv"
+
+	"github.com/tonge3199/go-RSS-project/internal/database"
+
+	_ "github.com/lib/pq"
 )
 
 type apiConfig struct {
