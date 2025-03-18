@@ -9,12 +9,15 @@ import (
 )
 
 func (config *apiConfig) handlerUsersCreate(w http.ResponseWriter, r *http.Request) {
+	/* user input came from r.body
+	   w : write HTTP Responses.
+	*/
 	type parameters struct {
 		Name string
 	}
 	decoder := json.NewDecoder(r.Body)
 	params := parameters{}
-	err := decoder.Decode(&params)
+	err := decoder.Decode(&params) // read in JSON data from r.Body.-> &params,   隐式赋值
 	if err != nil {
 		respondWithError(w, http.StatusInternalServerError, "Couldn't decode parameters")
 		return
@@ -31,5 +34,9 @@ func (config *apiConfig) handlerUsersCreate(w http.ResponseWriter, r *http.Reque
 		return
 	}
 
+	respondWithJSON(w, http.StatusOK, databaseUserToUser(user))
+}
+
+func (config *apiConfig) handlerUserGet(w http.ResponseWriter, r *http.Request, user database.User) {
 	respondWithJSON(w, http.StatusOK, databaseUserToUser(user))
 }

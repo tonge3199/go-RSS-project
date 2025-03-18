@@ -6,6 +6,7 @@ import (
 	"net/http"
 )
 
+// err_log in *http.Request
 func respondWithError(w http.ResponseWriter, code int, msg string) {
 	if code > 499 {
 		log.Printf("Responding with 5XX errors: %s", msg)
@@ -27,8 +28,5 @@ func respondWithJSON(w http.ResponseWriter, code int, payload interface{}) {
 		return
 	}
 	w.WriteHeader(code)
-	_, err = w.Write(data)
-	if err != nil {
-		log.Printf("Error writing response: %s", err)
-	}
+	w.Write(data)
 }
