@@ -30,7 +30,7 @@ func (cfg *apiConfig) handlerFeedCreate(w http.ResponseWriter, r *http.Request, 
 		CreatedAt: time.Now().UTC(),
 		UpdatedAt: time.Now().UTC(),
 		Name:      params.Name,
-		Url:       r.URL.String(),
+		Url:       params.Url,
 		UserID:    user.ID,
 	})
 	if err != nil {
@@ -40,4 +40,13 @@ func (cfg *apiConfig) handlerFeedCreate(w http.ResponseWriter, r *http.Request, 
 	}
 
 	respondWithJSON(w, http.StatusCreated, databaseFeedToFeed(feed))
+}
+
+func (cfg *apiConfig) handlerGetFeeds(w http.ResponseWriter, r *http.Request) {
+	feeds, err := cfg.DB.GetFeeds(r.Context())
+	if err != nil {
+		respondWithError(w, http.StatusInternalServerError, "Couldn't get feeds")
+		return
+	}
+	respondWithJSON(w, http.StatusOK, feeds)
 }
