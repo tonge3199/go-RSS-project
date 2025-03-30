@@ -85,5 +85,5 @@ curl -X POST http://localhost:8080/feeds -H "Content-Type: application/json" -d 
 This project is licensed under the MIT License. Feel free to use and contribute!
 
 ## Author
-Developed by **Your Name**. Contributions welcome!
+Developed by **Leon Thomas**. Contributions welcome!
 
