@@ -42,10 +42,9 @@ PORT=8080
 ### 3. Start PostgreSQL 
 
 ### 4. Run database migrations
-```
+
 ​For detailed information, check out [SQLC](https://sqlc.dev/) and [Goose](https://pressly.github.io/goose/).
 See the config-file in sqlc.yml 
-```
 
 ### 5. Start the server
 ```sh
